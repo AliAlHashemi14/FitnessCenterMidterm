@@ -18,5 +18,9 @@ namespace FitnessCenterMidterm
             Id = _id;
             Name = _name;
         }
+
+        //checkin should always pass?
+        //membership points and fees raise at checkin. 
+
     }
 }
