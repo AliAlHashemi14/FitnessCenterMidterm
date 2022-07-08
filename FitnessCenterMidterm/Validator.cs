@@ -8,6 +8,24 @@ namespace FitnessCenterMidterm
 {
     internal class Validator
     {
+
+
+        //public static void GetClub()
+        //{
+        //    while (true)
+        //    {
+        //        int choice = int.Parse(Console.ReadLine());
+        //        if (clubs.Contains(choice))
+        //        {
+        //            Console.WriteLine($"You've chosen {clubs});
+        //        }
+        //        else if ()
+
+        //    }
+
+
+
+        //}
         public static void GetInput()
         {
             while (true)
