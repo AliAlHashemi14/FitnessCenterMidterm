@@ -8,8 +8,8 @@ namespace FitnessCenterMidterm
 {
     internal class Club
     {
-        string Name { get; set; }
-        string Address { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
         public Club(string name, string address)
         {
             Name = name;

@@ -12,8 +12,8 @@ List<Club> clubs = new List<Club>()
 List<SingleClubMember> singleClubMembers = new List<SingleClubMember>();
 List<MultiClubMember> multiClubMembers = new List<MultiClubMember>();
 Validator.GetInput();
-Console.WriteLine("Which club would you like to join?");
-foreach(Club club in clubs)
+for(int i = 0; i < clubs.Count; i++)
 {
-    Console.WriteLine(club);
+    Console.WriteLine($"{i +1}. {clubs[i].Name}");
 }
+Console.WriteLine($"{clubs.Count}. Multi-Club Membership");
