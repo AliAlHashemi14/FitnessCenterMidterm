@@ -5,10 +5,17 @@
  * Finish remove method DONE
  * finish info method DONE
  * -----------------------
- * Generate bill of fees, membership points for multiclub
- * Exception error message for checkins
+ * Generate bill of fees, membership points for multiclub DONE
+ * Exception error message for checkins DONE
  * Add method, specific single or multi DONE
  * Optionals are optional.
+ * -----------------------
+ * Delete seperate lists and join them into one DONE
+ * Redo prompts that list both DONE
+ * ------------------------                    
+ * 
+ * FIX THE REMOVE FUNCITON!!!!
+ * Remove option 6. bullet point
  * 
  * */
 
@@ -27,12 +34,17 @@ List<Club> clubs = new List<Club>()
 };
 
 //Instance of SingleClubMember
-List<SingleClubMember> singleClubMembers = new List<SingleClubMember>()
-{
-};
+//List<SingleClubMember> singleClubMembers = new List<SingleClubMember>()
+//{
+//};
 
-//Instance of MultiClubMember
-List<MultiClubMember> multiClubMembers = new List<MultiClubMember>();
+////Instance of MultiClubMember
+//List<MultiClubMember> multiClubMembers = new List<MultiClubMember>();
+
+List<Members> memberList = new List<Members>()
+{
+    new SingleClubMember(1, "Jordan", clubs[0], "Single")
+};
 //{
 //    new MultiClubMember(1, "john", clubs[0])
 //};
@@ -59,7 +71,7 @@ do
     //Join, remove, or information functionality
     while (true)
     {
-
+                
         Console.WriteLine("What is your name?");
         name = Console.ReadLine();
         Console.WriteLine("Are you looking to enter the gym you're at, join, leave, info or quit?");
@@ -70,26 +82,7 @@ do
         {
 
             Add();
-            //Console.WriteLine("Which club would you like to join?");
-            //int choice = (int.Parse(Console.ReadLine().ToLower().Trim()));
-
-
-            //if (choice - 1 >= 0 && choice - 1 < clubs.Count())
-            //{
-            //    Console.WriteLine($"You've chosen {clubs[choice - 1].Name}");
-            //    singleClubMembers.Add(new SingleClubMember(singleClubMembers.Count() + 1, name));
-            //    Console.WriteLine($"ID: {singleClubMembers[0].Id}, Name: {singleClubMembers[0].Name}");
-            //    break;
-            //}
-            //else if (choice == clubs.Count + 1)
-            //{
-            //    Console.WriteLine("You've chosen a Multi-Club Membership");
-            //    break;
-            //}
-            //else
-            //{
-            //    Console.WriteLine($"Incorect number, try again");
-            //}
+            
         }
 
         //Remove block
@@ -102,26 +95,29 @@ do
         {
             Info();
         }
-        //else if (addremove =="check in")
-        //{
-        //    //SingleClubMember.CheckIn();
-        //}
         else if (addremove == "enter")
         {
+            Console.WriteLine("What location would you like to visit? (Enter number)");
+            int enter = int.Parse(Console.ReadLine());
 
+            if (enter >= 1 && enter <= clubs.Count() + 1)
+            {
+                memberList.Where(m => m.Name == name).First().CheckIn(clubs[enter - 1]);
+                Console.WriteLine("Welcome to ");
+            }
+            else
+            {
+                Console.WriteLine("go away then"); 
+            }
+           
         }
         else
         {
-            break;
+            Console.WriteLine("Okay have a great day");
+            runProgram = false;
         }
 
-
-
-
-
-
-
-        
+                        
     }
 
 }
@@ -134,16 +130,25 @@ void Add()
     int choice = (int.Parse(Console.ReadLine().ToLower().Trim()));
 
 
-    if (choice - 1 >= 0 && choice < clubs.Count())
+    if (choice - 1 >= 0 && choice < clubs.Count + 1)
     {
         Console.WriteLine($"You've chosen {clubs[choice - 1].Name}");
-        singleClubMembers.Add(new SingleClubMember(singleClubMembers.Count() + 1, name, clubs[choice -1]));
+
+        
+        memberList.Add(new SingleClubMember(memberList.Count() + 1, name, clubs[choice -1], "Single"));
     }
-    else if (choice == clubs.Count())
+    else if (choice == clubs.Count + 1)
     {
-        Console.WriteLine("You've chosen a Multi-Club Membership");
-        multiClubMembers.Add(new MultiClubMember(multiClubMembers.Count() + 1, name, clubs[choice - 1]));
+        Console.WriteLine($"You've chosen {clubs[choice - 1].Name}");
+
+
+        memberList.Add(new MultiClubMember(memberList.Count() + 1, name, clubs[choice - 1], "Multi"));
     }
+    //else if (choice == clubs.Count())
+    //{
+    //    Console.WriteLine("You've chosen a Multi-Club Membership");
+    //    multiClubMembers.Add(new MultiClubMember(multiClubMembers.Count() + 1, name, clubs[choice - 1]));
+    //}
     else
     {
         Console.WriteLine($"Incorect number, try again");
@@ -153,62 +158,90 @@ void Add()
 //Remove club method
 void Remove()
 {
-    Console.WriteLine("Are you a single-club member or a multi-club member?");
-    Console.WriteLine("1. Single \n2. Multi");
-    string response = Console.ReadLine().ToLower().Trim();
-    if( response == "1")
-    foreach (SingleClubMember s in singleClubMembers)
+    //Console.WriteLine("Are you a single-club member or a multi-club member?");
+    //Console.WriteLine("1. Single \n2. Multi");
+    //string response = Console.ReadLine().ToLower().Trim();
+    //if( response == "1")
+    foreach (Members m in memberList)
     {
-        if (s.Name.Equals(name))
+        if (m.Name.Equals(name))
         {
-            singleClubMembers.Remove(s);
-            Console.WriteLine("You have been removed.");
-        }
-    }
-    else if(response == "2")
-    {
-        foreach (MultiClubMember m in multiClubMembers)
-        {
-            if (m.Name.Equals(name))
+            /*
+             * 
+             * 
+             * 
+             * FIX ME FIX ME
+             * IX ME FIX ME
+             * 
+             * IX ME FIX ME
+             * 
+             * IX ME FIX ME
+             * IX ME FIX ME
+             * 
+             * 
+
+
+
+
+
+            if (m.Membership.Equals("Single"))
             {
-                multiClubMembers.Remove(m);
-                Console.WriteLine("You have been removed.");
+                SingleClubMember sm = m as SingleClubMember;
+                memberList.Remove(sm);
             }
+            else
+            {
+                MultiClubMember mm = m as MultiClubMember;
+                memberList.Remove(mm);
+            }
+            
         }
     }
-    else
-    {
-        Console.WriteLine("Incorrect input.");
-    }
+    //else if(response == "2")
+    //{
+    //    foreach (MultiClubMember m in multiClubMembers)
+    //    {
+    //        if (m.Name.Equals(name))
+    //        {
+    //            multiClubMembers.Remove(m);
+    //            Console.WriteLine("You have been removed.");
+    //        }
+    //    }
+    //}
+    //else
+    //{
+    //    Console.WriteLine("Incorrect input.");
+    //}
 }
 
 void Info()
 {
     //display member information
-    Console.WriteLine("Are you a single-club member or a multi-club member?");
-    Console.WriteLine("1. Single \n2.Multi");
-    string response = Console.ReadLine().ToLower().Trim();
-    if (response == "1")
-        foreach (SingleClubMember s in singleClubMembers)
-        {
-            if (s.Name.Equals(name))
-            {
-                Console.WriteLine($"Name: {s.Name} \nID: {s.Id} \nClub Name: {s.assignedClub.Name} \nClub Address: {s.assignedClub.Address} \n Fees: {s.assignedClub.MemberFee}");
-            }
-        }
-    else if (response == "2")
-    {
-        foreach (MultiClubMember m in multiClubMembers)
+    //Console.WriteLine("Are you a single-club member or a multi-club member?");
+    //Console.WriteLine("1. Single \n2.Multi");
+    //string response = Console.ReadLine().ToLower().Trim();
+    //if (response == "1")
+
+    //this used to be foreach(Members) but it broke. Does this matter?
+        foreach (Members m in memberList)
         {
             if (m.Name.Equals(name))
             {
-                Console.WriteLine($"Name: {m.Name} \nID: {m.Id} \nClub Name: {m.assignedClub.Name} \nClub Address: {m.assignedClub.Address} \nMember Points: {m.memberPoints} " +
-                    $"\nFees: {m.assignedClub.MemberFee}");
+                //if singleclub memeber display else mutli club
+                if (m.Membership.Equals("Single"))
+                {
+                    SingleClubMember sm = m as SingleClubMember;
+                    Console.WriteLine($"Name: {sm.Name} \nID: {sm.Id} \nClub Name: {sm.AssignedClub.Name} \nClub Address: {sm.AssignedClub.Address} \n Fees: {sm.AssignedClub.MemberFee}");
+                }
+                else
+                {
+                    MultiClubMember mm = m as MultiClubMember;
+                    Console.WriteLine($"Name: { mm.Name} \nID: { mm.Id} \nClub Name: { mm.AssignedClub.Name} \nClub Address: { mm.AssignedClub.Address} \nMember Points: { mm.memberPoints}" +
+                    $"\nFees: {mm.AssignedClub.MemberFee}"); 
+                }
+
             }
         }
-    }
-    else
-    {
-        Console.WriteLine("Incorrect input.");
-    }
+    
+    
 }

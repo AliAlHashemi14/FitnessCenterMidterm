@@ -8,26 +8,26 @@ namespace FitnessCenterMidterm
 {
     internal class SingleClubMember : Members
     {
-        public Club assignedClub { get; set; }
+        public Club AssignedClub { get; set; }
                       
 
-        public SingleClubMember(int _id, string _name, Club _assignedClub)
+        public SingleClubMember(int _id, string _name, Club _assignedClub, string _membership)
         {
             Id = _id;
             Name = _name;
-            assignedClub = _assignedClub;
-            
+            AssignedClub = _assignedClub;
+            Membership = _membership;
         }
 
         public override void CheckIn(Club club)
         {
-            if (club == assignedClub)
+            if (club == AssignedClub)
             {
                 Console.WriteLine("Hi, thanks checking in.");
             }
             else
             {
-                Console.WriteLine("Sorry, youre not a member of this club.");
+                Console.WriteLine("Sorry, you're not a member of this club.");
             }
         }
 
