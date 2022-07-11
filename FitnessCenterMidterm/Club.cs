@@ -10,10 +10,14 @@ namespace FitnessCenterMidterm
     {
         public string Name { get; set; }
         public string Address { get; set; }
-        public Club(string name, string address)
+        public double MemberFee { get; set; }
+
+        public Club(string name, string address, double _memberFee)
+
         {
             Name = name;
             Address = address;
+            MemberFee = _memberFee;
         }
     }
 }

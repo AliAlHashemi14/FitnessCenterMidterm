@@ -11,7 +11,7 @@ namespace FitnessCenterMidterm
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public abstract void CheckIn(Club club);
+        public abstract void CheckIn(Club club); 
 
 
     }
