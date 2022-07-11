@@ -1,13 +1,13 @@
 ﻿/* TO DO: MONDAY
  * ---------------------
- * Clean up code: Place into methods and classes. Move lists into classes.
- * Fix jank order
- * Finish remove method
- * finish info method
+ * Clean up code: Place into methods and classes. DONE
+ * Fix jank order DONE
+ * Finish remove method DONE
+ * finish info method DONE
  * -----------------------
  * Generate bill of fees, membership points for multiclub
  * Exception error message for checkins
- * Add method, specific single or multi
+ * Add method, specific single or multi DONE
  * Optionals are optional.
  * 
  * */
@@ -19,7 +19,7 @@ List<Club> clubs = new List<Club>()
 {
     new Club("Planet Fitness","123 Sesame Street"),
     new Club("Gold's Gym", "420 Swole Avenue"),
-    new Club("Lifetime Fitness",""),
+    new Club("Lifetime Fitness","69420 Qu1cksc0p3 Boulevard"),
     new Club("Globo-Gym", "52 Discovery, Irvine, CA 92618"),
 };
 
@@ -30,7 +30,7 @@ List<SingleClubMember> singleClubMembers = new List<SingleClubMember>()
 
 //Instance of MultiClubMember
 List<MultiClubMember> multiClubMembers = new List<MultiClubMember>();
-Validator.GetInput();
+//Validator.GetInput();
 
 
 //Main loop for menu and initial prompts
@@ -53,15 +53,15 @@ do
     while (true)
     {
 
-
+        Console.WriteLine("What is your name?");
+        name = Console.ReadLine();
         Console.WriteLine("Are you looking to join, leave, info or quit?");
         string addremove = Console.ReadLine().ToLower().Trim();
 
         //Add block
         if (addremove == "join")
         {
-            Console.WriteLine("What is your name?");
-            name = Console.ReadLine();
+
             Add();
             //Console.WriteLine("Which club would you like to join?");
             //int choice = (int.Parse(Console.ReadLine().ToLower().Trim()));
@@ -122,7 +122,7 @@ void Add()
     if (choice - 1 >= 0 && choice - 1 < clubs.Count())
     {
         Console.WriteLine($"You've chosen {clubs[choice - 1].Name}");
-        singleClubMembers.Add(new SingleClubMember(singleClubMembers.Count() + 1, name, clubs[choice]));
+        singleClubMembers.Add(new SingleClubMember(singleClubMembers.Count() + 1, name, clubs[choice -1]));
         Console.WriteLine($"ID: {singleClubMembers[0].Id}, Name: {singleClubMembers[0].Name}, Club: {singleClubMembers[0].assignedClub.Name}");
     }
     else if (choice == clubs.Count + 1)
@@ -140,7 +140,7 @@ void Add()
 void Remove()
 {
     Console.WriteLine("Are you a single-club member or a multi-club member?");
-    Console.WriteLine("1. Single \n2.Multi");
+    Console.WriteLine("1. Single \n2. Multi");
     string response = Console.ReadLine().ToLower().Trim();
     if( response == "1")
     foreach (SingleClubMember s in singleClubMembers)
