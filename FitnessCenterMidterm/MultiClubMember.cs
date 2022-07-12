@@ -15,22 +15,16 @@ namespace FitnessCenterMidterm
         public override void CheckIn(Club club)
         {
                 Console.WriteLine("Hi, thanks checking in.");
-                memberPoints += 10;
-                      
+                memberPoints += 10;                      
         }
-
 
         public MultiClubMember(int _id,string _name, Club _assignedClub, string _membership)
         {
             Id = _id;
             Name = _name;
             AssignedClub = _assignedClub;
-            Membership = _membership;
-           
+            Membership = _membership;           
         }
-
-        //checkin should always pass?
-        //membership points and fees raise at checkin. 
 
     }
 }

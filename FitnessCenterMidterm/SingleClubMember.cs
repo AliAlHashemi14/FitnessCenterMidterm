@@ -8,8 +8,7 @@ namespace FitnessCenterMidterm
 {
     internal class SingleClubMember : Members
     {
-        public Club AssignedClub { get; set; }
-                      
+        public Club AssignedClub { get; set; }                      
 
         public SingleClubMember(int _id, string _name, Club _assignedClub, string _membership)
         {
@@ -18,7 +17,6 @@ namespace FitnessCenterMidterm
             AssignedClub = _assignedClub;
             Membership = _membership;
         }
-
         public override void CheckIn(Club club)
         {
             if (club == AssignedClub)
@@ -30,32 +28,5 @@ namespace FitnessCenterMidterm
                 Console.WriteLine("Sorry, you're not a member of this club.");
             }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        //Needs special property that is associate club.
-        /* needs method if club name = club name return 
-         * Allows members to enter and non members the door
-         * throws exception in main
-         * 
-         * 
-         * 
-         * 
-         * */
-
-
     }
 }
