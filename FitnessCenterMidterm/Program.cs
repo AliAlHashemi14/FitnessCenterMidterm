@@ -1,25 +1,4 @@
-﻿/* TO DO: MONDAY
- * ---------------------
- * Clean up code: Place into methods and classes. DONE
- * Fix jank order DONE
- * Finish remove method DONE
- * finish info method DONE
- * -----------------------
- * Generate bill of fees, membership points for multiclub DONE
- * Exception error message for checkins DONE
- * Add method, specific single or multi DONE
- * Optionals are optional.
- * -----------------------
- * Delete seperate lists and join them into one DONE
- * Redo prompts that list both DONE
- * ------------------------                    
- * 
- * FIX THE REMOVE FUNCITON!!!!
- * Remove option 6. bullet point
- * 
- * */
-
-using FitnessCenterMidterm;
+﻿using FitnessCenterMidterm;
 
 //Instance of Club list
 List<Club> clubs = new List<Club>()
@@ -47,7 +26,7 @@ do
     for (int i = 0; i < clubs.Count; i++)
     {
         Console.WriteLine($"{i + 1}. {clubs[i].Name}");
-    }    
+    }
 
     //Join, remove, or information functionality
     while (true)
@@ -82,7 +61,7 @@ do
             if (enter >= 1 && enter <= clubs.Count() + 1)
             {
                 memberList.Where(m => m.Name == name).First().CheckIn(clubs[enter - 1]);
-                Console.WriteLine("Welcome to ");
+                Console.WriteLine("Welcome");
             }
             else
             {
@@ -106,7 +85,6 @@ void Add()
     Console.WriteLine("Which club would you like to join?");
     int choice = (int.Parse(Console.ReadLine().ToLower().Trim()));
 
-
     if (choice - 1 >= 0 && choice < clubs.Count + 1)
     {
         Console.WriteLine($"You've chosen {clubs[choice - 1].Name}");
@@ -120,7 +98,6 @@ void Add()
 
         memberList.Add(new MultiClubMember(memberList.Count() + 1, name, clubs[choice - 1], "Multi"));
     }
-   
     else
     {
         Console.WriteLine($"Incorrect number, try again");
@@ -139,32 +116,32 @@ void Remove()
         Console.WriteLine($"{m.Name}, you've been removed from that club");
     }
 }
-    void Info()
-    {
-        bool foundMember = false;        
+//User info method
+void Info()
+{
+    bool foundMember = false;
 
-        foreach (Members m in memberList)
+    foreach (Members m in memberList)
+    {
+        if (m.Name.Equals(name))
         {
-            if (m.Name.Equals(name))
+            foundMember = true;
+            //if singleclub memeber display else mutli club
+            if (m.Membership.Equals("Single"))
             {
-                foundMember = true;
-                //if singleclub memeber display else mutli club
-                if (m.Membership.Equals("Single"))
-                {
-                    SingleClubMember sm = m as SingleClubMember;
-                    Console.WriteLine($"Name: {sm.Name} \nID: {sm.Id} \nClub Name: {sm.AssignedClub.Name} \nClub Address: {sm.AssignedClub.Address} \n Fees: {sm.AssignedClub.MemberFee}");
-                }
-                else
-                {
-                    MultiClubMember mm = m as MultiClubMember;
-                    Console.WriteLine($"Name: {mm.Name} \nID: {mm.Id} \nClub Name: {mm.AssignedClub.Name} \nClub Address: {mm.AssignedClub.Address} \nMember Points: {mm.memberPoints}" +
-                    $"\nFees: {mm.AssignedClub.MemberFee}");
-                }
+                SingleClubMember sm = m as SingleClubMember;
+                Console.WriteLine($"Name: {sm.Name} \nID: {sm.Id} \nClub Name: {sm.AssignedClub.Name} \nClub Address: {sm.AssignedClub.Address} \n Fees: {sm.AssignedClub.MemberFee}");
+            }
+            else
+            {
+                MultiClubMember mm = m as MultiClubMember;
+                Console.WriteLine($"Name: {mm.Name} \nID: {mm.Id} \nClub Name: {mm.AssignedClub.Name} \nClub Address: {mm.AssignedClub.Address} \nMember Points: {mm.memberPoints}" +
+                $"\nFees: {mm.AssignedClub.MemberFee}");
             }
         }
-        if (foundMember == false)
-        {
-            Console.WriteLine("You are not a part of a club.  Please join a club to display your info.");
-        }
-
     }
+    if (foundMember == false)
+    {
+        Console.WriteLine("You are not a part of a club.  Please join a club to display your info.");
+    }
+}
